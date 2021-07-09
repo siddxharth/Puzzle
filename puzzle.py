@@ -7,8 +7,15 @@ import random
 # Initialize Pygame module
 pygame.init()
 
+# Set Screen Icon
+icon = pygame.image.load('icon.png')
+pygame.display.set_icon(icon)
+
+# Set Game Caption
+pygame.display.set_caption("Puzzle")
+
 # Set Screen Size
-scr_size = (300,300)
+scr_size = (300, 300)
 screen = pygame.display.set_mode(scr_size)
 
 # Colors
@@ -21,6 +28,8 @@ BLUE = (55, 55, 200)
 font = pygame.font.Font(pygame.font.get_default_font(), 20)
 
 # Create a Tile class
+
+
 class Tile():
     def __init__(self, x, y, val):
         self.loc_x = x
@@ -28,24 +37,30 @@ class Tile():
         self.val = val
         self.box = pygame.Rect(self.loc_x, self.loc_y, 100, 100)
 
+
 # Create Tile objects
-loc = [[0, 0], [100, 0], [200, 0], [0, 100], [100, 100], [200, 100], [0, 200], [100, 200], [200, 200]]
+loc = [[0, 0], [100, 0], [200, 0], [0, 100], [100, 100],
+       [200, 100], [0, 200], [100, 200], [200, 200]]
 random.shuffle(loc)
 tiles = []
-vals = [1,2,3,4,5,6,7,8]
+vals = [1, 2, 3, 4, 5, 6, 7, 8]
 for i in range(8):
     t = Tile(loc[i][0], loc[i][1], vals[i])
     tiles.append(t)
 # Create empty tile
 empty = loc[8]
 emp_tile = Tile(empty[0], empty[1], -1)
-cor_loc = [[0, 0], [100, 0], [200, 0], [0, 100], [100, 100], [200, 100], [0, 200], [100, 200], [200, 200]]
+cor_loc = [[0, 0], [100, 0], [200, 0], [0, 100], [
+    100, 100], [200, 100], [0, 200], [100, 200], [200, 200]]
 cor_loc.remove(empty)
 # Swap Tiles
+
+
 def swap():
     temp = i.box
     i.box = emp_tile.box
     emp_tile.box = temp
+
 
 # Game Loop
 run = True
@@ -53,7 +68,7 @@ screen.fill(GREY)
 # print(loc)
 for i in tiles:
     val = str(i.val)
-    print("["+str(i.box[0])+","+str(i.box[1])+ "-" + val+']', end = ", ")
+    print("["+str(i.box[0])+","+str(i.box[1]) + "-" + val+']', end=", ")
 print("\n")
 while run:
     win = 0
@@ -94,7 +109,7 @@ while run:
                                 # print("Right swap")
                                 swap()
     for i in tiles:
-        if i.val == tiles.index(i)+1 and i.box == (loc[tiles.index(i)][0], loc[tiles.index(i)][0], 100,100):
+        if i.val == tiles.index(i)+1 and i.box == (loc[tiles.index(i)][0], loc[tiles.index(i)][0], 100, 100):
             win = True
         else:
             win = False
@@ -104,4 +119,4 @@ while run:
     pygame.display.flip()
 for i in tiles:
     val = str(i.val)
-    print("["+str(i.box[0])+","+str(i.box[1])+ "-" + val+']', end = ", ")
+    print("["+str(i.box[0])+","+str(i.box[1]) + "-" + val+']', end=", ")
