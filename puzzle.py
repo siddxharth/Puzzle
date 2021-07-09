@@ -69,6 +69,10 @@ while run:
         # Quit game
         if event.type == pygame.QUIT:
             run = False
+        # Check for win situation
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                print('checking for win')
         # On click
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
@@ -98,13 +102,6 @@ while run:
     if win == True:
         print('win')
     pygame.display.flip()
-    for i in range(8):
-        if tiles[i].val==i+1 and tiles[i].box == (cor_loc[i][0], cor_loc[i][1], 100, 100):
-            win += 1
-        else:
-            break
-    if win == 8:
-        print('win')
 for i in tiles:
     val = str(i.val)
     print("["+str(i.box[0])+","+str(i.box[1])+ "-" + val+']', end = ", ")
