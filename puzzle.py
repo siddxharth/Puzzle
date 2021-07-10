@@ -39,27 +39,23 @@ class Tile():
 
 
 # Create Tile objects
-loc = [[0, 0], [100, 0], [200, 0], [0, 100], [100, 100],
-       [200, 100], [0, 200], [100, 200], [200, 200]]
-random.shuffle(loc)
+loc = {1: [0, 0], 2: [100, 0], 3: [200, 0], 4: [0, 100], 5: [100, 100],
+       6: [200, 100], 7: [0, 200], 8: [100, 200], 9: [200, 200]}
 tiles = []
-vals = [1, 2, 3, 4, 5, 6, 7, 8]
-for i in range(8):
-    t = Tile(loc[i][0], loc[i][1], vals[i])
+for i in loc:
+    t = Tile(loc[i][0], loc[i][1], i)
     tiles.append(t)
 # Create empty tile
-empty = loc[8]
+empty = loc[9]
 emp_tile = Tile(empty[0], empty[1], -1)
-cor_loc = [[0, 0], [100, 0], [200, 0], [0, 100], [
-    100, 100], [200, 100], [0, 200], [100, 200], [200, 200]]
-cor_loc.remove(empty)
+
 # Swap Tiles
-
-
 def swap():
     temp = i.box
     i.box = emp_tile.box
     emp_tile.box = temp
+
+# Check for win situation
 
 
 # Game Loop
@@ -108,14 +104,6 @@ while run:
                             elif i.box.right == emp_tile.box.left:
                                 # print("Right swap")
                                 swap()
-    for i in tiles:
-        if i.val == tiles.index(i)+1 and i.box == (loc[tiles.index(i)][0], loc[tiles.index(i)][0], 100, 100):
-            win = True
-        else:
-            win = False
-            break
-    if win == True:
-        print('win')
     pygame.display.flip()
 for i in tiles:
     val = str(i.val)
