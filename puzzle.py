@@ -39,14 +39,19 @@ class Tile():
 
 
 # Create Tile objects
-loc = {1: [0, 0], 2: [100, 0], 3: [200, 0], 4: [0, 100], 5: [100, 100],
-       6: [200, 100], 7: [0, 200], 8: [100, 200], 9: [200, 200]}
+list_loc = [[0, 0], [100, 0], [200, 0], [0, 100], [100, 100],
+       [200, 100], [0, 200], [100, 200], [200, 200]]
+random.shuffle(list_loc)
+
+loc = dict()
+for i in range(9):
+    loc[i] = list_loc[i]
 tiles = []
 for i in loc:
-    t = Tile(loc[i][0], loc[i][1], i)
+    t = Tile(loc[i][0], loc[i][1], i+1)
     tiles.append(t)
 # Create empty tile
-empty = loc[9]
+empty = loc[8]
 emp_tile = Tile(empty[0], empty[1], -1)
 
 # Swap Tiles
