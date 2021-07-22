@@ -58,7 +58,7 @@ for i in range(8):
 empty = loc[8]
 emp_tile = Tile(empty[0], empty[1], -1)
 
-# # Swap Tiles
+# Swap Tiles
 
 
 def swap():
@@ -72,12 +72,15 @@ run = True
 screen.fill(GREY)
 print("\n")
 while run:
-    win = 0
     # Print Tiles
     for i in range(8):
+        #Draw rectangle on game window
         pygame.draw.rect(screen, BLUE, tiles[i].box)
+        # Render font shape
         val_font = font.render(str(tiles[i].val), True, BLACK)
+        # Draws rendered font on game window
         screen.blit(val_font, (tiles[i].box.center))
+    # Draw empty rectangle on game window
     pygame.draw.rect(screen, GREY, emp_tile.box)
 
     # Check for events
@@ -85,7 +88,7 @@ while run:
         # Quit game
         if event.type == pygame.QUIT:
             run = False
-        # On click
+        # On click - check if Left mouse button is clicked
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 for i in tiles:
